@@ -37,6 +37,9 @@ public class Get05 extends HerOkuAppBaseUrl {
         response.then().assertThat().statusCode(200);
         assertTrue(response.asString().contains("bookingid"));
 
+        // Calistirinca assertion error verdi
+
+
     }
 
 
