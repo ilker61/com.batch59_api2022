@@ -25,7 +25,7 @@ public class Get05 extends HerOkuAppBaseUrl {
         // https://restful-booker.herokuapp.com/booking?firstname=Aaron&lastname=Chen
 
         spec.pathParam("first", "booking").
-                queryParams("firstname", "Aaron", "lastname", "Chen");
+                queryParams("firstname", "GGS", "lastname", "FINCH");
 
         // 2. step ; Set the expected data
         // 3. step; Set the request and get response
@@ -37,11 +37,6 @@ public class Get05 extends HerOkuAppBaseUrl {
         response.then().assertThat().statusCode(200);
         assertTrue(response.asString().contains("bookingid"));
 
-        // Calistirinca assertion error verdi
-
-
     }
-
-
 
 }
