@@ -70,6 +70,5 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
         //Assert that "delectus aut autem" is one of the titles whose id is less than 5
 
         assertTrue(titles.contains("delectus aut autem"));
-
     }
 }
