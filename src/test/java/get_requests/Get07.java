@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.*;
 import static org.junit.Assert.*;
 
 public class Get07 extends JsonPlaceHolderBaseUrl {
+
     /*
         Given
 	   	    https://jsonplaceholder.typicode.com/todos
@@ -43,7 +44,6 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
         // 4. step; Do Assertion
 
         response.then().assertThat().statusCode(200);
-
 
         //Print all ids greater than 190 on the console
 

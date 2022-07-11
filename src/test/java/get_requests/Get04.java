@@ -30,12 +30,17 @@ public class Get04 extends JsonPlaceHolderBaseUrl {
     @Test
     public void get1(){
         //1. step ; Set the Url
+
         spec.pathParam("first", "todos");
+
         // 2. step ; Set the expected data
         // 3. step; Set the request and get response
+
        Response response= given().spec(spec).when().accept(ContentType.JSON).get("/{first}");
        response.prettyPrint();
+
         // 4. step: Do Assertion
+
         response.
                 then().
                 assertThat().

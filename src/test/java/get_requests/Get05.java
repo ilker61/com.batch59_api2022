@@ -38,5 +38,4 @@ public class Get05 extends HerOkuAppBaseUrl {
         assertTrue(response.asString().contains("bookingid"));
 
     }
-
 }

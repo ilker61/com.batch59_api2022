@@ -89,7 +89,5 @@ public class Get06 extends HerOkuAppBaseUrl {
         // 3) assertAll() methodu kullanilir, aksi takdirde kod calismaz be yaa
 
         softAssert.assertAll();
-
-
     }
 }
