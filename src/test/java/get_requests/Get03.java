@@ -54,8 +54,8 @@ public class Get03 extends JsonPlaceHolderBaseUrl {
         response.then().assertThat().statusCode(200).contentType(ContentType.JSON).
                 body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit") , "completed", equalTo(false), "userId", equalTo(2));
 
-
     }
+
     /*
         1-Assertion yaparken Java calismayi durudurdugunda hata sonrasi kodlar calismaz. boylece hata sonrasi
     assertionlar hakkinda bilgi sahibi olamayiz. hata oncesi assertionlar gecer, sonrasini bilemeyiz.
@@ -65,4 +65,5 @@ public class Get03 extends JsonPlaceHolderBaseUrl {
         4-Eger coklu body() icinde assertion yaparsak hard assertion yapmis oluruz, Eger tek body() icinde
         assertion yaparsak soft assertion yapmis oluruz,
      */
+
 }
