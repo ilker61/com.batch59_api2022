@@ -1,13 +1,15 @@
 package get_requests;
 
+import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 
-public class GetPratik {
+public class GetPratik extends JsonPlaceHolderBaseUrl {
     /*
     1-Postman manuel API testi icin kullanilir
     2-API otomasyon testi icin Rest_Assured Library kullaniyoruz
@@ -117,6 +119,53 @@ public class GetPratik {
         // bunun icin headers methodunu kullanarak serverin ne oldugunu goruruz
 
         assertEquals("Cowboy", response.header("Server"));
+    }
+
+    @Test
+    public void get03(){
+        /*
+        Given
+            https://jsonplaceholder.typicode.com/todos/23
+        When
+            User send GET Request to the URL
+        Then
+            HTTP Status Code should be 200
+		And
+		    Response format should be “application/json”
+		And
+		    “title” is “et itaque necessitatibus maxime molestiae qui quas velit”,
+		And
+		    “completed” is false
+		And
+		    “userId” is 2
+     */
+
+        //1. step; set the url
+
+        spec.pathParams("first","todos", "second", 23);
+
+        // 2. step; set the expected data
+        // 3. step; Set the Request and get the Response
+
+        Response response=given().spec(spec).when().get("/{first}/{second}");
+
+        // 4. do assertion
+
+        // 1. yol  ===> her assertion icin farkli body ler kullanilir
+
+        response.then().assertThat().statusCode(200).
+                contentType(ContentType.JSON).
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit")).
+                body("completed", equalTo(false)).body("userId", equalTo(2));
+
+        //2. yol ===> tek bir body nin icerisine yazilabilir
+
+        response.then().assertThat().statusCode(200).
+                contentType(ContentType.JSON).
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
+                        "completed", equalTo(false),"userId", equalTo(2) );
+
 
     }
+
 }
