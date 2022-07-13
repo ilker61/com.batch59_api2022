@@ -6,10 +6,10 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-public class GetPratik extends JsonPlaceHolderBaseUrl {
+public class GetPratik1 extends JsonPlaceHolderBaseUrl {
     /*
     1-Postman manuel API testi icin kullanilir
     2-API otomasyon testi icin Rest_Assured Library kullaniyoruz
@@ -164,7 +164,42 @@ public class GetPratik extends JsonPlaceHolderBaseUrl {
                 contentType(ContentType.JSON).
                 body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
                         "completed", equalTo(false),"userId", equalTo(2) );
+    }
 
+    @Test
+    public void get04(){
+        /*
+        Given
+            https://jsonplaceholder.typicode.com/todos
+        When
+	 	    I send a GET request to the Url
+	    And
+	        Accept type is “application/json”
+	    Then
+	        HTTP Status Code should be 200
+	    And
+	        Response format should be "application/json"
+	    And
+	        There should be 200 todos
+	    And
+	        "quis eius est sint explicabo" should be one of the todos title
+	    And
+	        2, 7, and 9 should be among the userIds
+     */
+
+        //1. step set the Url
+        spec.pathParam("first", "todos");
+        // 2. step set the expected data
+        // 3. step; Set the Request and get the Response
+
+       Response response= given().spec(spec).when().accept(ContentType.JSON).get("/{first}");
+       response.prettyPrint();
+
+       response.then().
+               assertThat().
+               statusCode(200).
+               contentType(ContentType.JSON).
+               body("id", hasSize(200), "title", hasItem("quis eius est sint explicabo"), "userId", hasItems(2,7,9));
 
     }
 
