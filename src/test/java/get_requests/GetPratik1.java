@@ -2,8 +2,11 @@ package get_requests;
 
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -229,11 +232,34 @@ public class GetPratik1 extends JsonPlaceHolderBaseUrl {
         // 3. step; send the request get the response
 
         Response response=given().spec(spec).when().get("/{first}");
-        response.prettyPrint();
+        // response.prettyPrint();
 
         // 4. step; do assertions
 
+        JsonPath json= response.jsonPath();
 
+        // 2)Print all ids greater than 190 on the console
+
+       List<Integer> buyukIds= json.getList("findAll{it.id>190}.id");
+        System.out.println(buyukIds);
+
+        assertEquals(10, buyukIds.size());
+
+        //Print all userIds whose ids are less than 5 on the console
+        // Assert that the number of userIds whose ids are less than 5 is 4
+
+        List<Integer> kucukIds=json.getList("findAll{it.id<5}.id");
+        System.out.println(kucukIds);
+
+        assertEquals(4,kucukIds.size());
+
+        //Print all titles whose ids are less than 5
+        //Assert that "delectus aut autem" is one of the titles whose id is less than 5
+
+        List<String> kucukTitles=json.getList("findAll{it.id}.title");
+        System.out.println(kucukTitles);
+
+        assertTrue(kucukTitles.contains("delectus aut autem"));
 
     }
 
