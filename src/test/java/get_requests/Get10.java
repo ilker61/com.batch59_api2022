@@ -3,6 +3,7 @@ package get_requests;
 import base_urls.GoRestBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
+import test_Data.GoRestTestData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,25 +43,19 @@ public class Get10 extends GoRestBaseUrl {
 
         // 2. step; Set the expected Data
 
-        Map<String, String> dataKeyMap=new HashMap<>();
+        GoRestTestData dataKey= new GoRestTestData();
 
-        dataKeyMap.put("name", "Mr. Gita Menon");
-        dataKeyMap.put("email", "gita_menon_mr@bayer.com");
-        dataKeyMap.put("gender", "female");
-        dataKeyMap.put("status", "inactive");
+        Map<String, String> dataKeyMap=dataKey.dataKeyMap("Mr. Gita Menon","gita_menon_mr@bayer.com", "female","inactive"  );
 
-        Map<String, Object> expectedDataMap=new HashMap<>();
+        Map<String, Object> expectedDataMap=dataKey.expectedDataMap(null, dataKeyMap);
 
-        expectedDataMap.put("meta", null);
-        expectedDataMap.put("data", dataKeyMap);
 
-        System.out.println(expectedDataMap);
 
         // 3. step ; send the request get the response
 
         Response response = given().spec(spec).when().get("/{first}/{second}");
         Map<String, Object> actualDataMap=response.as(HashMap.class);
-        System.out.println(actualDataMap);
+
 
         // 4. step; Do Assertion
 
