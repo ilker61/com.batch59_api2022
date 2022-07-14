@@ -3,6 +3,7 @@ package get_requests;
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
+import test_Data.JsonPlaceHolderTestData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +71,46 @@ public class Get08 extends JsonPlaceHolderBaseUrl {
         assertEquals(expectedData.get("Status code"),response.getStatusCode());
         assertEquals(expectedData.get("Via"),response.getHeader("Via"));
         assertEquals(expectedData.get("Server"),response.getHeader("Server"));
+
+    }
+
+
+    //            ###########################
+
+    // Yukaridaki testi baska bir method ile tekrar yapacagiz
+
+
+    @Test
+    public void get02(){
+
+        // 1. step; Set the Url
+
+        spec.pathParams("first", "todos", "second", 2);
+
+        // 2. step; set the expected data
+        JsonPlaceHolderTestData expectedData=new JsonPlaceHolderTestData();
+        Map<String,Object>expectedDataMap=expectedData.expectedDataWithAllKeys(1,"quis ut nam facilis et officia qui", false );
+        expectedDataMap.put("Status code", 200);
+        expectedDataMap.put("Via", "1.1 vegur");
+        expectedDataMap.put("Server", "cloudflare");
+
+
+        // 3. step; send thr request get the response
+
+        Response response = given().spec(spec).when().get("/{first}/{second}");
+
+        Map<String, Object> actualDAta=response.as(HashMap.class);
+        System.out.println(actualDAta);
+
+        //4. step ; Do assertion
+
+        assertEquals(expectedDataMap.get("userId"),actualDAta.get("userId"));
+        assertEquals(expectedDataMap.get("title"),actualDAta.get("title"));
+        assertEquals(expectedDataMap.get("completed"),actualDAta.get("completed"));
+        assertEquals(expectedDataMap.get("Status code"),response.getStatusCode());
+        assertEquals(expectedDataMap.get("Via"),response.getHeader("Via"));
+        assertEquals(expectedDataMap.get("Server"),response.getHeader("Server"));
+
 
     }
 
