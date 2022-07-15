@@ -207,7 +207,7 @@ public class GetPratik1 extends JsonPlaceHolderBaseUrl {
     }
 
     @Test
-    public void get07(){
+    public void get07() {
 
         /*
         Given
@@ -228,38 +228,64 @@ public class GetPratik1 extends JsonPlaceHolderBaseUrl {
 
         spec.pathParam("first", "todos");
 
-        // 2. step; set the expected data
+        // 2. step; set the expected Data
+
         // 3. step; send the request get the response
 
-        Response response=given().spec(spec).when().get("/{first}");
-        // response.prettyPrint();
+        Response response = given().spec(spec).when().get("/{first}");
 
-        // 4. step; do assertions
+        // 4. step; Do Assertion
+
+        response.then().assertThat().statusCode(200);
+
+        //Print all ids greater than 190 on the console
 
         JsonPath json= response.jsonPath();
 
-        // 2)Print all ids greater than 190 on the console
+        List<String> idList=json.getList("findAll{it.id>190}.id");
+        System.out.println(idList);
 
-       List<Integer> buyukIds= json.getList("findAll{it.id>190}.id");
-        System.out.println(buyukIds);
-
-        assertEquals(10, buyukIds.size());
+        assertEquals(10,idList.size());
 
         //Print all userIds whose ids are less than 5 on the console
-        // Assert that the number of userIds whose ids are less than 5 is 4
+        //Assert that the number of userIds whose ids are less than 5 is 4
 
-        List<Integer> kucukIds=json.getList("findAll{it.id<5}.id");
-        System.out.println(kucukIds);
+        List<String> userIdList=json.getList("findAll{it.id<5}.userId");
+        System.out.println(userIdList);
 
-        assertEquals(4,kucukIds.size());
+        assertEquals(4, userIdList.size());
 
         //Print all titles whose ids are less than 5
         //Assert that "delectus aut autem" is one of the titles whose id is less than 5
 
-        List<String> kucukTitles=json.getList("findAll{it.id}.title");
-        System.out.println(kucukTitles);
+        List<String> titles=json.getList("findAll{it.id<5}.title");
+        System.out.println(titles);
 
-        assertTrue(kucukTitles.contains("delectus aut autem"));
+        assertTrue(titles.contains("delectus aut autem"));
+    }
+
+    @Test
+    public void get08(){
+
+        /*
+         Given
+            https://jsonplaceholder.typicode.com/todos/2
+        When
+            I send GET Request to the URL
+        Then
+            Status code is 200
+            And "completed" is false
+            And "userId" is 1
+            And "title" is "quis ut nam facilis et officia qui"
+            And header "Via" is "1.1 vegur"
+            And header "Server" is "cloudflare"
+            {
+                "userId": 1,
+                "id": 2,
+                "title": "quis ut nam facilis et officia qui",
+                "completed": false
+            }
+     */
 
     }
 
