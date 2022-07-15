@@ -6,7 +6,9 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -286,6 +288,35 @@ public class GetPratik1 extends JsonPlaceHolderBaseUrl {
                 "completed": false
             }
      */
+
+        // 1. step; set the Url
+
+        spec.pathParams("first", "todos", "second", 2);
+
+        // 2. step; set the expected Data
+        // asagida yaptigimiz isleme De-Serialisasion deniliyorre
+
+        Map<String, Object> expectedDataMap = new HashMap<>();
+        expectedDataMap.put("Status code", 200);
+        expectedDataMap.put("completed" , false);
+        expectedDataMap.put("userId" , 1);
+        expectedDataMap.put("title" , "quis ut nam facilis et officia qui");
+        expectedDataMap.put("Via" , "1.1 vegur");
+        expectedDataMap.put("Server" , "cloudflare");
+
+        // 3. step; send the request get the response
+
+        Response response = given().spec(spec).when().get("/{first}/{second}");
+        Map<String, Object> actualDataMap = response.as(HashMap.class);
+
+        // 4. step; Do Assertion
+
+        assertEquals(expectedDataMap.get("userId"), actualDataMap.get("userId"));
+        assertEquals(expectedDataMap.get("title"), actualDataMap.get("title"));
+        assertEquals(expectedDataMap.get("completed"), actualDataMap.get("completed"));
+        assertEquals(expectedDataMap.get("Server"), response.getHeader("Server"));
+        assertEquals(expectedDataMap.get("Status code"), response.getStatusCode());
+        assertEquals(expectedDataMap.get("Via"), response.getHeader("Via"));
 
     }
 
