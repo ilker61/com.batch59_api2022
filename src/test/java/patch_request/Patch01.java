@@ -53,5 +53,6 @@ public class Patch01 extends JsonPlaceHolderBaseUrl {
 
         response.then().assertThat().statusCode(200).body("title", equalTo(mapToAssertAllDetails.get("title")),
                 "userId", equalTo(mapToAssertAllDetails.get("userId")), "completed", equalTo(mapToAssertAllDetails.get("completed")));
+
     }
 }
