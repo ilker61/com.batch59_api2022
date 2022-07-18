@@ -9,7 +9,7 @@ import pojos.JsonPlaceHolderPojo;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class Post03Pojo extends JsonPlaceHolderBaseUrl {
+public class Post03_Pojo extends JsonPlaceHolderBaseUrl {
     /*
          Given
             https://jsonplaceholder.typicode.com/todos
