@@ -9,10 +9,10 @@ public class GoRestTestData {
 
         Map<String, String> dataKeyMap=new HashMap<>();
 
-        dataKeyMap.put("name", "Mr. Gita Menon");
-        dataKeyMap.put("email", "gita_menon_mr@bayer.com");
-        dataKeyMap.put("gender", "female");
-        dataKeyMap.put("status", "inactive");
+        dataKeyMap.put("name", name);
+        dataKeyMap.put("email", email);
+        dataKeyMap.put("gender", gender);
+        dataKeyMap.put("status", status);
 
         return dataKeyMap;
     }
