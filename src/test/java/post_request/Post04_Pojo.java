@@ -84,7 +84,7 @@ public class Post04_Pojo extends HerOkuAppBaseUrl {
         assertEquals(bookingDates.getCheckin(), actualPojo.getBooking().getBookingdates().getCheckin());
         assertEquals(bookingDates.getCheckout(), actualPojo.getBooking().getBookingdates().getCheckout());
 
-        //assertEquals(bookingPojo.getAdditinalneeds(), actualPojo.getBooking().getAdditinalneeds());
+        assertEquals(bookingPojo.getAdditinalneeds(), actualPojo.getBooking().getAdditinalneeds());
 
     }
 

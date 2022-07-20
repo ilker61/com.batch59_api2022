@@ -20,7 +20,7 @@ public class BookingPojo {
     private Integer totalprice;
     private Boolean depositpaid;
     private BookingDatesPojo bookingdates;
-    private String additinalneeds;
+    private String additionalneeds;
 
     // 2. adim; tum parametrelerle ve bir de parametresiz constructor larimizi olusturuyoruz
 
@@ -31,7 +31,7 @@ public class BookingPojo {
         this.totalprice = totalprice;
         this.depositpaid = depositpaid;
         this.bookingdates = bookingdates;
-        this.additinalneeds = additinalneeds;
+        this.additionalneeds = additionalneeds;
     }
 
     public BookingPojo() {
@@ -80,11 +80,11 @@ public class BookingPojo {
     }
 
     public String getAdditinalneeds() {
-        return additinalneeds;
+        return additionalneeds;
     }
 
     public void setAdditinalneeds(String additinalneeds) {
-        this.additinalneeds = additinalneeds;
+        this.additionalneeds = additinalneeds;
     }
 
     // 4.adim ; toString() methodu olusturulur
@@ -98,7 +98,7 @@ public class BookingPojo {
                 ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
                 ", bookingdates=" + bookingdates +
-                ", additinalneeds='" + additinalneeds + '\'' +
+                ", additinalneeds='" + additionalneeds + '\'' +
                 '}';
     }
 }
