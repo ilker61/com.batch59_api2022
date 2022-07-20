@@ -13,7 +13,7 @@ public class JsonUtil {
 
     // 1. method; Json datasini java objesdine cevirir (De-serializasyon)
 
-    public static <T>  T convertJsonToJavaObject(String json,  Class<T> cls){
+    public static <T>  T convertJsonToJavaObject(String json,  Class<T> cls){  // Generic Method
         T javaResult = null;
         try {
             javaResult= mapper.readValue(json, cls);
@@ -24,7 +24,6 @@ public class JsonUtil {
 
         return javaResult;
     }
-
 
     // 2. method; Java objesini json datasina cevirir (Serializasyon)
 
