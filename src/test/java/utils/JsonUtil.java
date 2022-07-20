@@ -18,13 +18,22 @@ public class JsonUtil {
         try {
             javaResult= mapper.readValue(json, cls);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-
 
         return javaResult;
     }
 
     // 2. method; Java objesini json datasina cevirir (Serializasyon)
 
+    public static String convertJavaObjectToJson(Object obj){
+        String jsonResult = null;
+        try {
+           jsonResult =  mapper.writeValueAsString(obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return jsonResult;
+    }
 }
