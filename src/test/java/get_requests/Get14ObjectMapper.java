@@ -63,6 +63,8 @@ public class Get14ObjectMapper extends JsonPlaceHolderBaseUrl {
 
     // 2. YOLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
 
+    // en iyi yontem
+
 
     @Test
     public void get02ObjectMapper(){
