@@ -3,6 +3,7 @@ package get_requests;
 import base_urls.HerOkuAppBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
+import org.testng.asserts.SoftAssert;
 import pojos.BookingPojo;
 import pojos.BookingResponseBodyPojo;
 import pojos.JsonPlaceHolderPojo;
@@ -62,6 +63,8 @@ public class Get15ObjectMapper extends HerOkuAppBaseUrl {
 
     // 4. step do assertion
     BookingPojo actualDataPojo = JsonUtil.convertJsonToJavaObject(response.asString(), BookingPojo.class);
+
+    /*
     assertEquals(200, response.getStatusCode());
 
     assertEquals(expectedDataPojo.getFirstname(), actualDataPojo.getFirstname());
@@ -72,9 +75,22 @@ public class Get15ObjectMapper extends HerOkuAppBaseUrl {
 
     assertEquals(expectedDataPojo.getBookingdates().getCheckin(), actualDataPojo.getBookingdates().getCheckin());
     assertEquals(expectedDataPojo.getBookingdates().getCheckout(), actualDataPojo.getBookingdates().getCheckout());
+    */
 
+    // Soft Assertion
+    // 1, adim; SoftAssertion obje olustur
+    SoftAssert softAssert= new SoftAssert();
 
+    softAssert.assertEquals(actualDataPojo.getFirstname(), expectedDataPojo.getFirstname());
+    softAssert.assertEquals(actualDataPojo.getLastname(), expectedDataPojo.getLastname());
+    softAssert.assertEquals(actualDataPojo.getTotalprice(), expectedDataPojo.getTotalprice());
+    softAssert.assertEquals(actualDataPojo.getDepositpaid(), expectedDataPojo.getDepositpaid());
+    softAssert.assertEquals(actualDataPojo.getAdditinalneeds(), expectedDataPojo.getAdditinalneeds());
 
+    softAssert.assertEquals(actualDataPojo.getBookingdates().getCheckin(), expectedDataPojo.getBookingdates().getCheckin());
+    softAssert.assertEquals(actualDataPojo.getBookingdates().getCheckout(), expectedDataPojo.getBookingdates().getCheckout());
+
+    softAssert.assertAll();
 
 }
 
