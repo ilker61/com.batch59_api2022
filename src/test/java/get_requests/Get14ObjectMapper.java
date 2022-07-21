@@ -4,6 +4,7 @@ import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
 import pojos.JsonPlaceHolderPojo;
+import test_Data.JsonPlaceHolderTestData;
 import utils.JsonUtil;
 
 import java.util.HashMap;
@@ -38,12 +39,9 @@ public class Get14ObjectMapper extends JsonPlaceHolderBaseUrl {
 
         //2. step; set the expected data
 
-        String expectedData = "{\n" +
-                "    \"userId\": 10,\n" +
-                "    \"id\": 198,\n" +
-                "    \"title\": \"quis eius est sint explicabo\",\n" +
-                "    \"completed\": true\n" +
-                "  }";
+        JsonPlaceHolderTestData jsonPlaceHolderTestData=new JsonPlaceHolderTestData();
+
+        String expectedData = jsonPlaceHolderTestData.expectedDataInString(10, "quis eius est sint explicabo",true);
 
         HashMap<String, Object> expectedDataMap = JsonUtil.convertJsonToJavaObject(expectedData, HashMap.class);
 

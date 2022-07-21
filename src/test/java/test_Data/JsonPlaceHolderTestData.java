@@ -24,7 +24,30 @@ public class JsonPlaceHolderTestData {
             expectedData.put("completed", completed);
         }
         return expectedData;
-
     }
+
+    // asagidaki json formati stringr ceviren method yazacagiz
+
+    /*
+    {
+									    "userId": 10,
+									    "id": 198,
+									    "title": "quis eius est sint explicabo",
+									    "completed": true
+									  }
+     */
+
+    public String expectedDataInString(Integer userId, String title, Boolean completed){
+
+        String expectedData = "{\n" +
+                "   \"userId\": "+userId+"  ,\n" +
+                "   \"title\": \""+title+"\",\n" +
+                "   \"completed\": "+completed+"\n" +
+                "  }";
+        return expectedData;
+    }
+
+
+
 
 }
