@@ -95,5 +95,10 @@ public class Get16 extends DummyRestApiBaseUrl {
         System.out.println(sum);
         assertEquals(6644770, sum);
 
+        //2.yol
+        int salarySum=salaryList.stream().reduce(0,(t,u)->t+u);
+        assertEquals(6644770,salarySum );
+
+
     }
 }
