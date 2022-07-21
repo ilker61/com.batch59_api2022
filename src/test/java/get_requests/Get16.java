@@ -96,7 +96,8 @@ public class Get16 extends DummyRestApiBaseUrl {
         assertEquals(6644770, sum);
 
         //2.yol
-        int salarySum=salaryList.stream().reduce(0,(t,u)->t+u);
+        //int salarySum=salaryList.stream().reduce(0,(t,u)->t+u);
+        int salarySum=salaryList.stream().reduce(0,Math::addExact);
         assertEquals(6644770,salarySum );
 
 
