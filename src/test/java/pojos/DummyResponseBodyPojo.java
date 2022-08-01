@@ -55,9 +55,7 @@ public class DummyResponseBodyPojo {
         this.message = message;
     }
 
-
     //4. toString() methodu olusturulur
-
 
     @Override
     public String toString() {
