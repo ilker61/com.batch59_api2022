@@ -23,9 +23,6 @@ public class GoRestTestData {
         expectedDataMap.put("meta", meta);
         expectedDataMap.put("data", data);
 
-
         return expectedDataMap;
     }
-
-
 }
